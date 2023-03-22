@@ -64,7 +64,11 @@ namespace Wemogy.ReleaseVersionAction.Helpers
                     .Where(x => x.TagName.Substring(0, x.TagName.LastIndexOf("-")).Equals(folderName))
                     .ToList();
             }
-
+            Console.WriteLine($"tags: {tags}");
+            Console.WriteLine($"version: {version}");
+            Console.WriteLine($"folderName: {folderName}");
+            Console.WriteLine($"prefix: {prefix}");
+            
             // Extract semantic version number only
             var filtered = tags
                 .Select(x => SemVersion.Parse(TagHelpers.ExtractVersion(x, folderName, prefix)))
