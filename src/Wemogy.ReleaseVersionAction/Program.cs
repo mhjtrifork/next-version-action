@@ -45,11 +45,13 @@ namespace Wemogy.ReleaseVersionAction
             // Get the major + minor version for the branch
             // Example: 1.2.0 for the branch release/1.2
             var branchMajorMinorVersion = BranchHelpers.ExtractMajorMinorVersion(options.Branch, folderName, options.Prefix);
-
+            Console.WriteLine($"branchMajorMinorVersion: {branchMajorMinorVersion}");
+            
             // Get the latest released version for this branch by tags
             // Example: v1.2.8 for the branch release/1.2
             var branchCurrentVersion = VersionHelpers.GetCurrentVersionFromTags(allTags, branchMajorMinorVersion, folderName, options.Prefix);
-
+            Console.WriteLine($"branchCurrentVersion: {branchCurrentVersion}");
+            
             // Get version for the next release
             SemVersion nextVersion;
             if (branchCurrentVersion == null)
@@ -63,7 +65,8 @@ namespace Wemogy.ReleaseVersionAction
                 // Increase the patch version by one
                 nextVersion = new SemVersion(branchCurrentVersion.Major, branchCurrentVersion.Minor, branchCurrentVersion.Patch + 1);
             }
-
+            Console.WriteLine($"nextVersion: {nextVersion}");
+            
             // Set tags for the current major.minor and major.minor.patch version
             // Example: v1.2 and v1.2.4
             var tagsToSet = new List<string>
