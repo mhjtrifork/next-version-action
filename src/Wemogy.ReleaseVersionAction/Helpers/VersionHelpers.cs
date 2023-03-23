@@ -68,20 +68,20 @@ namespace Wemogy.ReleaseVersionAction.Helpers
             Console.WriteLine($"version: {version}");
             Console.WriteLine($"folderName: {folderName}");
             Console.WriteLine($"prefix: {prefix}");
-            
+
             // Extract semantic version number only
             var filtered = tags
                 .Select(x => SemVersion.Parse(TagHelpers.ExtractVersion(x, folderName, prefix)))
                 .Where(x => x.Major == version.Major)
                 .OrderBy(x => x.Minor)
                 .ToList();
-            if (filtered.Any())
-            {
+//            if (filtered.Any())
+//            {
                 return filtered.Last() == version;
-            }
-            else {
-                return true;
-            }
+//            }
+//            else {
+//                return true;
+//            }
         }
     }
 }
